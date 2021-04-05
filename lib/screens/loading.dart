@@ -31,7 +31,7 @@ class _LoadingState extends State<Loading> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('country App'),
+          title: const Text('Countries'),
         ),
         body: Container(
           child: Container(
@@ -39,22 +39,10 @@ class _LoadingState extends State<Loading> {
             child: Column(
 
               children: <Widget>[
-                new Container(
-
-                  child: Center(
-                    child: new Text(
-                      'Countries ',
-                      style: new TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold
-                      ),
-                    ),
-                  ),
-                ),
                 FutureBuilder<List>(
                   future: serverData, //sets serverData as the expected Future
                   builder: (context, snapshot) {
-                    //CounterUtil.incrementStreamCounterForLabel("futurebuilder");
+
                     if (snapshot.hasData) { //checks for non-null return value from serverData
                       return getListView(snapshot.data, "server"); // snapshot.data is return value of serverData
                     }
@@ -83,28 +71,27 @@ Widget getListView(List<dynamic> listData, mapKey) {
       itemCount: listData.length,
       itemBuilder: (BuildContext context, int index) {
         String countryName = listData[index]['name'];
-        String imageSrc = listData[index]['flag'];
+        String imageSrc = listData[index]['flag'];//the url to get flag
         String population = listData[index]['population'].toString();
         String capitalName = listData[index]['capital'];
-        Country aCountry=Country(imageSrc,countryName,population,capitalName);
+        Country aCountry=Country(imageSrc,countryName,population,capitalName);//an obj to pass to next page if tap
         return Card(
           child: ListTile(
               title: Text('$countryName'),
-              leading: CircleAvatar(
-
-                child: Container(
+              leading: ClipRRect(
 
                   child: SvgPicture.network(
                     imageSrc,
+                    width: 70,
+                    height: 40,
+                    fit: BoxFit.cover,
                     placeholderBuilder: (BuildContext context) => Container(
-                        padding: const EdgeInsets.all(30.0),
-                        child: const CircularProgressIndicator()),
-
+                        //padding: const EdgeInsets.all(30.0),
+                       child: const CircularProgressIndicator()
                   ),
                 ),
               ),
-        onTap: () {
-        print('Card Clicked');
+        onTap: () {//print('Card Clicked');
         Navigator.pushNamed(context, '/country',arguments: {'aCountry':aCountry});
         },
         ),

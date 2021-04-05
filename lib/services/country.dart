@@ -36,35 +36,13 @@ Future<List> getServerData() async {
   }
 }
 
-//not in use
-Future<List<Country>> getContries() async {
-
-  List<Country> allContries=[];
-  try
-  {
-   Response response = await get(
-   Uri.parse('https://restcountries.eu/rest/v2/all'));
-   List body = json.decode(response.body) as List;
-   //print(body[200]);
-   for (int i=0;i< body.length;i++)
-   {
-     print(body[i]);
-     allContries.add(Country(i.toString(),i.toString(),i.toString(),i.toString()));
-     print(i.toString());
-
-   }
-  }
-  finally
-  {
-    print(allContries.length);
-    return allContries;
-  }
 
 
 
 
 
-}
+
+
 
 
 
