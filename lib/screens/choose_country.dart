@@ -27,24 +27,28 @@ class _ChooseCountryState extends State<ChooseCountry> {
         elevation: 0,
       ),
       body: Column(
-        children: [
-
-          //Text('population: '+aCountry.population),
-          Container(
-            width: 200,
-            height: 100,
-            alignment: Alignment.topCenter,
-            child: SvgPicture.network(
-              aCountry.flag,
-              fit: BoxFit.cover,
+            children: <Widget>[
+              Flexible(
+                flex:1,
+               // alignment: Alignment.topCenter,
+                child: SvgPicture.network(
+                  aCountry.flag,
+                  fit:BoxFit.fill,
+                ),
+              ),
+            
+            Flexible(
+              flex:2,
+              child: Text('Population: '+aCountry.population+'\n'+'Capital: '+aCountry.capitalName,
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
+            )
+
+            ],
           ),
 
-          Text('capitalName: '+aCountry.capitalName+'\n'+'population: '+aCountry.population,),
-        ],
+       );
 
-       )
 
-    );
   }
 }

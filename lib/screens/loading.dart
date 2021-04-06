@@ -34,10 +34,7 @@ class _LoadingState extends State<Loading> {
           title: const Text('Countries'),
         ),
         body: Container(
-          child: Container(
-
             child: Column(
-
               children: <Widget>[
                 FutureBuilder<List>(
                   future: serverData, //sets serverData as the expected Future
@@ -54,7 +51,6 @@ class _LoadingState extends State<Loading> {
                 ),
               ],
             ),
-          ),
         )
     );
   }

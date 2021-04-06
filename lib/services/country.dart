@@ -27,7 +27,7 @@ Future<List> getServerData() async {
   final response = await get(Uri.parse(url), headers: {"Accept": "application/json"});
 
   if (response.statusCode == 200) {
-    print(response.body);
+    //print(response.body);
     return json.decode(response.body);
   }
   else {
